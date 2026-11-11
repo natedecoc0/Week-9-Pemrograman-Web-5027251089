@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Series {
+  id            Int    @id @default(autoincrement())
+  title         String
+  genre         String @default("Lainnya")
+  totalEpisodes Int
+  watched       Int    @default(0)
+  status        String @default("plan")
+  rating        Int    @default(0)
+  review        String @default("")
+}

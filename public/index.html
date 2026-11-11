@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SeriesLog - Watchlist & Review</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="window">
+    <div class="titlebar">
+      <span>🌐 SeriesLog - Microsoft Internet Explorer</span>
+      <span class="btns"><b>_</b><b>□</b><b class="x">×</b></span>
+    </div>
+    <div class="menubar"><span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Tools</span><span>Help</span></div>
+    <div class="addressbar">Address: <input value="http://www.serieslog.net/watchlist.html" readonly> <span class="go">Go</span></div>
+
+    <header class="hero">
+      <h1><span id="cat" class="logo-cat"></span><span>Series<em>Log</em></span></h1>
+      <marquee>★ Welcome to SeriesLog! Track what you watch, write your reviews, chase your episode progress ★</marquee>
+    </header>
+
+    <div class="layout">
+      <aside>
+        <section class="win98">
+          <div class="w-title"><span>📺 New Series - Add Series</span><span class="w-btns"><b>_</b><b>□</b><b>×</b></span></div>
+          <div class="w-menu"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>S</u>eries</span><span><u>H</u>elp</span></div>
+          <div class="w-head">
+            <div class="avatar">📺</div>
+            <div><b>Add a new series</b><br><small>Fill in the details, pick a status</small></div>
+          </div>
+
+          <form id="form" class="w-body">
+            <label for="f-title">Title *</label>
+            <input id="f-title" name="title" required maxlength="80" placeholder="e.g. Goblin">
+
+            <label for="f-genre">Genre</label>
+            <input id="f-genre" name="genre" list="genres" placeholder="Pick a suggestion or type your own">
+            <datalist id="genres">
+              <option>K-Drama</option><option>J-Drama</option><option>C-Drama</option><option>Thai Drama</option><option>Taiwanese Drama</option>
+              <option>Anime</option><option>Animation</option><option>Drama</option><option>Comedy</option><option>Sitcom</option>
+              <option>Romance</option><option>Romantic Comedy</option><option>Thriller</option><option>Crime</option><option>Mystery</option>
+              <option>Horror</option><option>Sci-Fi</option><option>Fantasy</option><option>Action</option><option>Adventure</option>
+              <option>Superhero</option><option>Historical</option><option>Period Drama</option><option>Medical</option><option>Legal</option>
+              <option>Political</option><option>Teen Drama</option><option>Slice of Life</option><option>Family</option><option>Coming-of-Age</option>
+              <option>Documentary</option><option>Docuseries</option><option>Reality</option><option>Talk Show</option><option>Variety Show</option>
+              <option>War</option><option>Western</option><option>Musical</option><option>Sports</option><option>Psychological</option>
+              <option>Survival</option><option>Zombie</option><option>Supernatural</option><option>Mockumentary</option><option>Miniseries</option>
+              <option>Anthology</option><option>Dark Comedy</option><option>Workplace</option><option>Cooking</option><option>True Crime</option>
+              <option>Movie</option>
+            </datalist>
+
+            <fieldset class="group">
+              <legend>Status</legend>
+              <div class="rbs">
+                <label class="rb"><input type="radio" name="status" value="watching"><span>Watching</span></label>
+                <label class="rb"><input type="radio" name="status" value="completed"><span>Completed</span></label>
+                <label class="rb"><input type="radio" name="status" value="plan" checked><span>Plan to Watch</span></label>
+                <label class="rb"><input type="radio" name="status" value="hold"><span>On Hold</span></label>
+              </div>
+            </fieldset>
+
+            <div class="w-tools">
+              <label for="f-eps">🎞 Episodes *</label>
+              <input id="f-eps" name="totalEpisodes" type="number" min="1" value="12" required>
+              <label for="f-rate">⭐ Rating</label>
+              <select id="f-rate" name="rating">
+                <option value="0">- not rated -</option>
+                <option value="5">★★★★★</option><option value="4">★★★★</option>
+                <option value="3">★★★</option><option value="2">★★</option><option value="1">★</option>
+              </select>
+            </div>
+
+            <div class="w-chat">
+              <textarea name="review" aria-label="Review" maxlength="300" placeholder="Your quick take..."></textarea>
+            </div>
+
+            <div class="w-actions">
+              <button type="reset" class="w98btn">Clear</button>
+              <button class="w98btn def">Add ★</button>
+            </div>
+          </form>
+          <div class="w-status"><span>Ready</span></div>
+        </section>
+
+        <section class="panel">
+          <h2>Series / Movie Count</h2>
+          <div class="in center">
+            Titles in your list
+            <div class="digits" id="counter"></div>
+            <ul class="counts" id="counts"></ul>
+          </div>
+        </section>
+      </aside>
+
+      <main>
+        <nav class="tabs">
+          <button class="gbtn" data-s="watching">Watching</button>
+          <button class="gbtn" data-s="completed">Completed</button>
+          <button class="gbtn" data-s="plan">Plan to Watch</button>
+          <button class="gbtn" data-s="hold">On Hold</button>
+        </nav>
+        <section id="list" class="grid"></section>
+      </main>
+    </div>
+
+    <div class="statusbar"><span id="msg">Done</span><span>🌐 Internet</span></div>
+  </div>
+
+  <div class="taskbar">
+    <button class="start">start</button>
+    <span class="task">🌐 SeriesLog</span>
+    <span class="tray" id="clock"></span>
+  </div>
+</body>
+</html>

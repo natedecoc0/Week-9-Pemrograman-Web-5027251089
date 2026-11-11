@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap");
+
+:root{
+  --page:#e6e6e8; --band:#b4b8e8; --gray:#c0c0c0; --navy:#000080; --sky:#1084d0;
+  --watching:#00807f; --completed:#2b4fd0; --plan:#6b7390; --hold:#8c2f3d;
+  --px:"Silkscreen","Courier New",monospace;
+  --dither:repeating-conic-gradient(#fff 0 25%,#c0c0c0 0 50%) 0 0/2px 2px;
+}
+[data-s=watching]{--c:var(--watching)} [data-s=completed]{--c:var(--completed)}
+[data-s=plan]{--c:var(--plan)} [data-s=hold]{--c:var(--hold)}
+*{box-sizing:border-box}
+
+/* Wallpaper*/
+body{margin:0;padding:18px 14px 52px;min-height:100vh;font:12px Tahoma,Verdana,sans-serif;color:#000;
+  background:url("bliss.jpg") center/cover no-repeat fixed,linear-gradient(#2a6fe0,#bcd7f8 54%,#6cc020 55%,#3f9a1a) fixed}
+
+/* ===== Bevel helpers: raised & sunken ===== */
+.window,.win98,.panel,.card,.grid,.empty,.w-tools,.gbtn,.w98btn,.btns b,.w-btns b,.del,.go,.start{
+  border:2px solid;border-color:#fff #404040 #404040 #fff}
+input,select,textarea,.w-head,.avatar,.bar,.layout,marquee{
+  border:2px solid;border-color:#808080 #fff #fff #808080}
+.window,.win98,.panel,.card,.grid,.empty{background:var(--gray);box-shadow:1px 1px 0 #000,4px 5px 0 #0005}
+
+/* ===== Navy title bars ===== */
+.titlebar,.w-title,.panel h2{margin:2px;padding:3px 3px 3px 6px;color:#fff;font:bold 12px Tahoma,sans-serif;background:linear-gradient(90deg,var(--navy),var(--sky))}
+.titlebar,.w-title{display:flex;justify-content:space-between;align-items:center}
+.btns b,.w-btns b{display:inline-grid;place-items:center;width:16px;height:14px;margin-left:2px;font:bold 10px Tahoma,sans-serif;color:#000;background:var(--gray);cursor:default}
+
+/* ===== Main window ===== */
+.window{position:relative;max-width:1100px;margin:0 auto}
+.menubar,.w-menu{display:flex;gap:2px;padding:1px 4px}
+.menubar span,.w-menu span{padding:2px 8px;cursor:default}
+.menubar span:hover,.w-menu span:hover{background:var(--navy);color:#fff}
+.addressbar{display:flex;gap:6px;align-items:center;padding:3px 6px;border-top:1px solid #808080;box-shadow:0 -1px 0 #fff}
+.addressbar input{flex:1}
+.go{padding:1px 14px;background:var(--gray);cursor:pointer}
+.go:active{border-color:#404040 #fff #fff #404040}
+
+/* ===== Hero banner ===== */
+.hero{position:relative;margin:4px 4px 0;padding:10px 14px;background:linear-gradient(90deg,var(--navy),var(--sky));border:2px solid;border-color:#808080 #fff #fff #808080}
+.hero h1{display:flex;align-items:center;gap:12px;margin:0;font:700 26px var(--px);color:#fff;text-shadow:3px 3px 0 #000}
+.hero h1 em{color:#ffe066;font-style:normal}
+.logo-cat svg{display:block;width:46px;height:43px;filter:drop-shadow(2px 2px 0 #000)}
+.hero::before{content:"💡 what to watch today?";position:absolute;right:16px;top:14px;padding:3px 8px;font:11px Tahoma,sans-serif;color:#000;background:#ffffe1;border:1px solid #000;box-shadow:2px 2px 0 #0006}
+marquee{display:block;margin-top:8px;padding:2px 8px;font:12px "Courier New",monospace;color:var(--navy);background:#fff}
+@media(max-width:800px){.hero::before{display:none}}
+
+/* ===== Page viewport  ===== */
+.layout{display:grid;grid-template-columns:290px 1fr;gap:14px;margin:4px;padding:12px;
+  background:radial-gradient(#0003 1px,#0000 1.4px) 0 0/8px 8px,var(--page)}
+@media(max-width:800px){.layout{grid-template-columns:1fr}}
+.panel{margin-bottom:14px}
+.in{padding:8px 10px 10px}.center{text-align:center}
+
+/* ===== Form controls ===== */
+label{display:block;margin:6px 0 2px;color:#000}
+input,select,textarea{width:100%;font:12px Tahoma,Verdana,sans-serif;color:#000;padding:2px 4px;background:#fff;border-radius:0;box-shadow:inset 1px 1px 0 #404040}
+input:focus,select:focus,textarea:focus{outline:1px dotted #000;outline-offset:1px}
+input::placeholder,textarea::placeholder{color:#808080}
+textarea{resize:vertical;min-height:54px}
+.gbtn,.w98btn{padding:3px 12px;font:12px Tahoma,Verdana,sans-serif;color:#000;background:var(--gray);cursor:pointer;box-shadow:inset -1px -1px 0 #808080}
+.gbtn:active,.w98btn:active{border-color:#404040 #fff #fff #404040;box-shadow:inset 1px 1px 0 #808080;padding:4px 11px 2px 13px}
+.w98btn{min-width:74px}
+.w98btn.def{box-shadow:0 0 0 1px #000,inset -1px -1px 0 #808080;font-weight:bold}
+
+/* ===== Add Series window ===== */
+.win98{margin-bottom:14px}
+.w-head{display:flex;align-items:center;gap:8px;margin:2px 4px;padding:8px;background:#fff}
+.w-head small{color:#555}
+.avatar{flex:none;display:grid;place-items:center;width:38px;height:38px;font-size:22px;background:#ffe9c9;border-radius:50%}
+.w-body{padding:2px 4px 4px}
+.w-body>label{margin:7px 0 2px}
+
+/* Status = group box + radio Win98 */
+.group{min-width:0;margin:10px 0 6px;padding:4px 8px 8px;border:1px solid #808080;box-shadow:1px 1px 0 #fff,inset 1px 1px 0 #fff}
+.group legend{padding:0 4px;color:#000}
+.rbs{display:grid;grid-template-columns:1fr 1fr;gap:6px 8px}
+.rb{position:relative;display:flex;align-items:center;margin:0;cursor:default}
+.rb input{position:absolute;width:1px;height:1px;padding:0;border:0;opacity:0;pointer-events:none}
+.rb span::before{content:"";display:inline-block;width:13px;height:13px;margin-right:6px;vertical-align:-3px;border-radius:50%;background:#fff;
+  border:2px solid;border-color:#808080 #fff #fff #808080;box-shadow:inset 1px 1px 0 #404040}
+.rb input:checked+span::before{background:radial-gradient(circle,#000 0 2.2px,#fff 2.7px)}
+.rb input:focus-visible+span{outline:1px dotted #000;outline-offset:2px}
+
+.w-tools{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:5px 8px;margin:6px 0;padding:6px;background:var(--band)}
+.w-tools label{margin:0;font-size:11px;font-weight:bold;color:#1c1c6a}
+.w-chat{margin:6px 0}
+.w-chat textarea{min-height:56px;border-radius:8px}
+.w-actions{display:flex;justify-content:flex-end;gap:6px;margin-top:6px}
+.w-status{display:flex;margin:2px 4px 4px;font-size:11px}
+.w-status span,.statusbar span{padding:1px 8px;border:1px solid;border-color:#808080 #fff #fff #808080}
+.w-status span{flex:1}
+.w-status::after{content:"";width:14px;margin-left:4px;
+  background:linear-gradient(135deg,#0000 55%,#808080 55% 60%,#0000 60% 70%,#808080 70% 75%,#0000 75% 85%,#808080 85% 90%,#0000 90%)}
+
+/* ===== Tabs (property sheet) ===== */
+.tabs{position:relative;z-index:1;display:flex;align-items:flex-end;gap:2px;padding:0 4px}
+.tabs .gbtn{margin-top:3px;padding:4px 12px;border-bottom:0;box-shadow:none}
+.tabs .gbtn:active{border-color:#fff #404040 #404040 #fff;border-bottom:0;box-shadow:none;padding:4px 12px}
+.tabs .gbtn::before{content:"";display:inline-block;width:8px;height:8px;margin-right:6px;background:var(--c);border:1px solid #000}
+.tabs .gbtn.active{margin-top:0;margin-bottom:-2px;padding:6px 14px;font-weight:bold;border-bottom:2px solid var(--gray)}
+
+/* ===== Cards (mini windows) ===== */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;align-items:start;min-height:220px;padding:14px;box-shadow:1px 1px 0 #000,4px 5px 0 #0005}
+.card-title{display:flex;justify-content:space-between;align-items:center;gap:6px;margin:2px;padding:2px 3px 2px 6px;color:#fff;font-weight:bold;
+  text-shadow:1px 1px 0 #000a;background:linear-gradient(90deg,color-mix(in srgb,var(--c),#000 55%),var(--c))}
+.del{display:grid;place-items:center;flex:none;width:16px;height:14px;padding:0;font:bold 11px Tahoma,sans-serif;line-height:1;color:#000;background:var(--gray);cursor:pointer}
+.del:active{border-color:#404040 #fff #fff #404040}
+.card-body{padding:6px 8px 8px}
+.meta{font:11px "Courier New",monospace}
+
+/* Win98 progress bar (blocks) */
+.bar{height:18px;margin:6px 0 3px;padding:2px;background:#fff;box-shadow:inset 1px 1px 0 #404040}
+.bar i{display:block;height:100%;background:repeating-linear-gradient(90deg,var(--navy) 0 8px,#0000 8px 10px)}
+
+/* Rating & review */
+.star{display:inline-block;cursor:pointer;font-size:20px;color:#e8e8e8;-webkit-text-stroke:1px #808080}
+.star.on{color:#ffd400;-webkit-text-stroke:1px #7a5c00}
+.star:hover{transform:scale(1.25)}
+blockquote{position:relative;margin:6px 2px 14px;padding:6px 10px;color:#000;background:#ffffe1;border:2px solid #000;border-radius:10px}
+blockquote::before{content:"";position:absolute;left:16px;bottom:-9px;width:12px;height:12px;background:#ffffe1;border:solid #000;border-width:0 2px 2px 0;transform:rotate(45deg) skew(10deg,10deg)}
+.actions{display:flex;gap:6px;align-items:center;margin-top:8px}
+.actions select{flex:1}
+
+/* Empty state = popup dialog */
+.empty{grid-column:1/-1;max-width:380px;margin:20px auto;padding:14px;text-align:center;font:12px "Courier New",monospace}
+.empty::before{content:"⚠ SeriesLog";display:block;margin:-14px -14px 14px;padding:3px 8px;text-align:left;font:11px var(--px);color:#fff;background:linear-gradient(90deg,var(--navy),var(--sky))}
+.empty::after{content:"Okay";display:inline-block;margin-top:14px;padding:3px 26px;font:11px var(--px);border:2px outset #fff;background:var(--gray)}
+
+/* ===== Series / Movie Count ===== */
+.digits{margin:8px 0}
+.digits span{display:inline-block;width:19px;margin:0 1px;font:bold 18px "Courier New",monospace;color:#4f4;background:#000;border:2px inset #888}
+.counts{margin:10px 0 0;padding:0;list-style:none;text-align:left}
+.counts li{display:flex;justify-content:space-between;padding:3px 4px;border-bottom:1px dotted #808080}
+.counts li span::before{content:"";display:inline-block;width:8px;height:8px;margin-right:6px;background:var(--c);border:1px solid #000}
+
+/* ===== Status bar & taskbar ===== */
+.statusbar{display:flex;gap:2px;padding:3px 4px}
+.statusbar span:first-child{flex:1}
+.taskbar{position:fixed;z-index:5;left:0;right:0;bottom:0;height:34px;display:flex;align-items:center;gap:6px;padding:3px 4px;
+  background:var(--gray);border-top:2px solid #fff;box-shadow:0 -1px 0 #dfdfdf}
+.start{height:100%;padding:0 12px;font:bold 13px Tahoma,sans-serif;text-transform:capitalize;color:#000;background:var(--gray);cursor:pointer;box-shadow:inset -1px -1px 0 #808080}
+.start::before{content:"⊞ "}
+.start:active{border-color:#404040 #fff #fff #404040}
+.task{display:flex;align-items:center;height:100%;min-width:160px;padding:0 12px;font-weight:bold;background:var(--dither);border:2px solid;border-color:#404040 #fff #fff #404040}
+.tray{display:flex;align-items:center;gap:6px;height:100%;margin-left:auto;padding:0 12px;border:1px solid;border-color:#808080 #fff #fff #808080}
+.tray::before{content:"🔊"}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar{width:16px}
+::-webkit-scrollbar-track{background:var(--dither)}
+::-webkit-scrollbar-thumb{background:var(--gray);border:2px solid;border-color:#fff #404040 #404040 #fff;box-shadow:inset -1px -1px 0 #808080}
